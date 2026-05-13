@@ -18,12 +18,19 @@
             --text-gray: #a0a0a0;
             --text-white: #e0e0e0;
             --border-subtle: rgba(163, 0, 0, 0.2);
+            --void-blue: #1a1a2e;
+        }
+
+        @font-face {
+            font-family: '2045alphabet';
+            src: url('https://ec2045.github.io/2045font/2045alphabet.otf') format('opentype');
+            font-display: swap;
         }
 
         body {
             background-color: var(--bg-black);
             color: var(--text-white);
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            font-family: '2045alphabet', 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.8;
@@ -44,7 +51,6 @@
             pointer-events: none;
         }
 
-        /* ナビゲーション */
         nav {
             display: flex;
             justify-content: space-between;
@@ -70,16 +76,6 @@
             margin-right: 15px;
         }
 
-        .site-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            letter-spacing: 0.3rem;
-        }
-
-        .site-title span {
-            color: var(--primary-red);
-        }
-
         .nav-links {
             display: flex;
             gap: 30px;
@@ -98,7 +94,6 @@
             color: var(--accent-red);
         }
 
-        /* メイン */
         main {
             padding-top: 180px;
             max-width: 900px;
@@ -133,52 +128,19 @@
             letter-spacing: -0.05em;
         }
 
-        /* 心臓の鼓動（Heartbeat）アニメーション */
         @keyframes heartbeat {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 10px rgba(163, 0, 0, 0.2);
-            }
-
-            14% {
-                transform: scale(1.05);
-                text-shadow: 0 0 25px rgba(255, 92, 92, 0.6);
-            }
-
-            28% {
-                transform: scale(1);
-                text-shadow: 0 0 10px rgba(163, 0, 0, 0.2);
-            }
-
-            42% {
-                transform: scale(1.05);
-                text-shadow: 0 0 25px rgba(255, 92, 92, 0.6);
-            }
-
-            70% {
-                transform: scale(1);
-                text-shadow: 0 0 10px rgba(163, 0, 0, 0.2);
-            }
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(163, 0, 0, 0.2); }
+            14% { transform: scale(1.05); text-shadow: 0 0 25px rgba(255, 92, 92, 0.6); }
+            28% { transform: scale(1); text-shadow: 0 0 10px rgba(163, 0, 0, 0.2); }
+            42% { transform: scale(1.05); text-shadow: 0 0 25px rgba(255, 92, 92, 0.6); }
+            70% { transform: scale(1); text-shadow: 0 0 10px rgba(163, 0, 0, 0.2); }
         }
 
-        .hero-section .highlight {
+        .highlight {
             display: inline-block;
-            /* アニメーション適用に必要 */
             color: var(--primary-red);
             animation: heartbeat 2s infinite ease-in-out;
             transform-origin: center;
-        }
-
-        .symbol-mark {
-            margin: 40px 0;
-            opacity: 0.6;
-            filter: grayscale(1) invert(1);
-            transition: 0.5s;
-        }
-
-        .symbol-mark:hover {
-            opacity: 1;
-            filter: grayscale(0) invert(1);
         }
 
         .content-section {
@@ -195,14 +157,6 @@
             text-transform: uppercase;
         }
 
-        .introduction p {
-            font-size: 1.05rem;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            text-align: justify;
-        }
-
-        /* 歴史 */
         .history-list {
             list-style: none;
             padding: 0;
@@ -235,19 +189,29 @@
             color: var(--text-gray);
         }
 
-        /* セクション */
         .grid-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
         }
 
-        .sub-section p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
+        .controversy-box {
+            background: rgba(163, 0, 0, 0.05);
+            border: 1px solid var(--border-subtle);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
         }
 
-        /* フッター */
+        .controversy-label {
+            color: var(--accent-red);
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 15px;
+        }
+
         footer {
             padding: 100px 50px;
             background-color: #000;
@@ -263,10 +227,6 @@
             letter-spacing: 0.1rem;
         }
 
-        .credits strong {
-            color: #999;
-        }
-
         .r-signature {
             color: var(--accent-red);
             font-weight: bold;
@@ -274,27 +234,14 @@
             transition: 0.3s;
         }
 
-        .r-signature:hover {
-            color: var(--text-white);
-            text-shadow: 0 0 10px var(--accent-red);
-        }
-
         @keyframes scanline {
-            0% {
-                transform: translateY(-100%);
-            }
-
-            100% {
-                transform: translateY(100%);
-            }
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
 
         .scanline {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+            top: 0; left: 0; width: 100%; height: 5px;
             background: rgba(163, 0, 0, 0.05);
             animation: scanline 8s linear infinite;
             pointer-events: none;
@@ -302,33 +249,11 @@
         }
 
         @media (max-width: 768px) {
-            .grid-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .history-item {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .history-date {
-                border-right: none;
-                border-bottom: 1px solid var(--primary-red);
-            }
-
-            nav {
-                padding: 15px 20px;
-            }
+            .grid-layout { grid-template-columns: 1fr; }
+            .history-item { flex-direction: column; gap: 10px; }
+            .history-date { border-right: none; border-bottom: 1px solid var(--primary-red); }
+            nav { padding: 15px 20px; }
         }
-        @font-face {
-  font-family: '2045alphabet';
-  src: url('https://ec2045.github.io/2045font/2045alphabet.otf') format('opentype');
-  font-display: swap;
-}
-
-body {
-  font-family: '2045alphabet', 'Noto Sans JP', sans-serif;
-}
     </style>
 </head>
 
@@ -339,7 +264,6 @@ body {
     <nav>
         <div class="nav-left">
             <img src="./icon.png" alt="BIB ICON" class="site-logo-img" onerror="this.style.display='none'">
-
         </div>
         <div class="nav-links">
             <a href="#home">Home</a>
@@ -360,14 +284,10 @@ body {
             <h1>STAY HUMAN. <br> STAY HUNGRY.</h1>
         </section>
 
-
         <section class="content-section introduction">
             <p>
                 Biological Identity Base (BIB) は、デジタルという名の「深淵」への逃避を拒絶します。
                 肉体は情報の入れ物ではありません。それ自体が唯一無二の、交換不可能な「実存」の証明です。
-            </p>
-            <p>
-                私たちは、同一アート作家 R が提唱する「記号としての同一性」の概念を、生物学的保存の核として採用しました。意味を剥ぎ取った先に残る純粋な「個」を、私たちはこの Area 0 で守り続けます。
             </p>
         </section>
 
@@ -391,9 +311,10 @@ body {
                 <li class="history-item">
                     <div class="history-date">2045</div>
                     <div class="history-desc">
-                        <strong>「同一アート作家 R」との共鳴</strong>
-                        R氏の記号哲学を BIB のアイデンティティ認証に統合。
-                        記号を血の通った「資産」として物理保存するプロジェクトを開始し、デジタルへの逃避に対抗する最後の座標を確立した。
+                        <strong>魂の再構成（Identity Resonance）と倫理的断絶</strong>
+                        「いくら肉体を強化しても、死んだ者が生き返るわけではない」という絶望に対し、BIBは同一アート作家Rの記号哲学を応用。
+                        特定のバイオ・フィールド下で、故人のアイデンティティを一時的に再構成し、対話を可能にする技術を確立した。
+                        しかし、これを「尊厳ある再会」とするか「死者への冒涜」とするか、Area 0 内外で激しい論争が巻き起こっている。
                     </div>
                 </li>
             </ul>
@@ -407,11 +328,16 @@ body {
                 </p>
             </div>
             <div class="sub-section">
-                <h2>R's Manifesto</h2>
+                <h2>The Ethereal Dialogue</h2>
                 <p>
-                    一秒一秒を大喜利大会のように、不確実な現実を肯定して生きる。
-                    アーカイブされるだけの「死んだデータ」になることを拒み、不完全で、美しく、有限な肉体と共に在り続けることを選びます。
+                    我々が提供するのは「蘇生」ではなく、あくまで「一時的な共鳴」です。死者が戻ることはありません。しかし、残された肉体の中に微かに残る「生の残響」を、R氏の記号哲学によって可視化します。
                 </p>
+                <div class="controversy-box">
+                    <span class="controversy-label">Ethics Warning / 倫理警告</span>
+                    <p style="font-size: 0.85rem; margin: 0;">
+                        この技術は、死を「完結したもの」として受け入れるべきだとする伝統的な実存主義者から、激しい弾劾を受けています。BIBはこれに対し、「未完の対話こそが、生者をより強く有機的に繋ぎ止める」と主張しています。
+                    </p>
+                </div>
             </div>
         </div>
     </main>
@@ -422,8 +348,7 @@ body {
                 AUTHORIZED FACILITY: AREA 0<br>
                 <strong>BIOLOGICAL IDENTITY BASE</strong><br>
                 <br>
-                協力同一アート作家R: <a href="https://ec2045.github.io/artr/" target="_blank" class="r-signature">(OFFICIAL
-                    SITE)</a>
+                協力同一アート作家R: <a href="https://ec2045.github.io/artr/" target="_blank" class="r-signature">(OFFICIAL SITE)</a>
             </div>
             <div class="copyright">
                 © 2045 BIB INC. ALL RIGHTS RESERVED.<br>
